@@ -11,7 +11,7 @@ const orderSchema = new mongoose.Schema(
 					ref: "Product",
 				},
 				count: Number,
-				color: String,
+				// color: String,
 			},
 		],
 		paymentIntent: {},

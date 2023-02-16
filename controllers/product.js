@@ -1,7 +1,7 @@
 const Product = require("../models/product");
 const slugify = require("slugify");
 const User = require("../models/user");
-const { aggregate } = require("../models/product");
+// const { aggregate } = require("../models/product");
 
 exports.create = async (req, res) => {
 	try {
@@ -261,29 +261,37 @@ const handleShipping = async (req, res, shipping) => {
 	res.json(products);
 };
 
-const handleColor = async (req, res, color) => {
-	const products = await Product.find({ color })
-		.populate("category", "_id name")
-		.populate("subs", "_id name")
-		// .populate("postedBy", "_id name")
-		.exec();
+// const handleColor = async (req, res, color) => {
+// 	const products = await Product.find({ color })
+// 		.populate("category", "_id name")
+// 		.populate("subs", "_id name")
+// 		// .populate("postedBy", "_id name")
+// 		.exec();
 
-	res.json(products);
-};
+// 	res.json(products);
+// };
 
-const handleBrand = async (req, res, brand) => {
-	const products = await Product.find({ brand })
-		.populate("category", "_id name")
-		.populate("subs", "_id name")
-		// .populate("postedBy", "_id name")
-		.exec();
+// const handleBrand = async (req, res, brand) => {
+// 	const products = await Product.find({ brand })
+// 		.populate("category", "_id name")
+// 		.populate("subs", "_id name")
+// 		// .populate("postedBy", "_id name")
+// 		.exec();
 
-	res.json(products);
-};
+// 	res.json(products);
+// };
 
 exports.searchFilters = async (req, res) => {
-	const { query, price, category, stars, sub, shipping, color, brand } =
-		req.body;
+	const {
+		query,
+		price,
+		category,
+		stars,
+		sub,
+		shipping,
+		// brand,
+		// color,
+	} = req.body;
 
 	if (query) {
 		console.log("query--->", query);
@@ -315,13 +323,13 @@ exports.searchFilters = async (req, res) => {
 		await handleShipping(req, res, shipping);
 	}
 
-	if (color) {
-		console.log("color --->", color);
-		await handleColor(req, res, color);
-	}
+	// if (color) {
+	// 	console.log("color --->", color);
+	// 	await handleColor(req, res, color);
+	// }
 
-	if (brand) {
-		console.log("brand --->", brand);
-		await handleBrand(req, res, brand);
-	}
+	// if (brand) {
+	// 	console.log("brand --->", brand);
+	// 	await handleBrand(req, res, brand);
+	// }
 };
